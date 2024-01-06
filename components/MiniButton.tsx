@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Animated } from "react-native";
 
@@ -9,13 +10,33 @@ interface MiniButtonProps {
     text: string;
 }
 
-const MiniButton = ({text}: MiniButtonProps) => {
+const MiniButton = ({ text }: MiniButtonProps) => {
+    const [scaleAnimation] = useState(new Animated.Value(1))
+    const handlePressIn = () => {
+        Animated.spring(scaleAnimation, {
+            toValue: 0.8,
+            useNativeDriver: true
+        }).start()
+    }
+
+    const handlePressOut = () => {
+        Animated.spring(scaleAnimation, {
+            toValue: 1,
+            useNativeDriver: true
+        }).start()
+    }
 
     return (
-        <View style = {styles.root}>
-            <View style = {styles.main}>
-                <Text style = {styles.text}>{text}</Text>
-            </View>
+        <View style={styles.root}>
+            <TouchableOpacity
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+                activeOpacity={0.8}
+            >
+                <Animated.View style={styles.main}>
+                    <Text style={styles.text}>{text}</Text>
+                </Animated.View>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -30,16 +51,16 @@ const styles = StyleSheet.create((
         },
 
         main: {
-            borderRadius: Math.min(width/6, height/8)/2,
-            height: Math.min(width/6, height/8),
-            width: Math.min(width/6, height/8),
+            borderRadius: Math.min(width / 6, height / 8) / 2,
+            height: Math.min(width / 6, height / 8),
+            width: Math.min(width / 6, height / 8),
             justifyContent: "center",
             alignItems: "center",
         },
 
         text: {
             fontFamily: 'Roboto-Light',
-            fontSize: Math.min(width/12, height/16),
+            fontSize: Math.min(width / 12, height / 16),
             color: "white",
         }
     }

@@ -26,7 +26,7 @@ const App = () => {
               <Button text = "AC" color = "#e30425" />
               <Button text = "( )" />
               <Button text = "%" />
-              <Button text = "/" />
+              <Button text = "÷" />
             </View>
             <View style = {styles.buttonRow}>
               <Button text = "7" /> 
@@ -49,7 +49,7 @@ const App = () => {
             <View style = {styles.buttonRow}>
               <Button text = "0" />
               <Button text = "." />
-              <Button text = "<" />
+              <Button text = "⌫" />
               <Button text = "=" color = "#e30425" />
             </View>
           </View>
