@@ -1,18 +1,18 @@
-import React from "react";  
+import React from "react";
+
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 const { height } = Dimensions.get("window")
-const { width } = Dimensions.get("window")
+const { width } = Dimensions.get('window')
 
-interface ButtonProps {
+interface MiniButtonProps {
     text: string;
-    color?: string;
 }
 
-const Button = ({text, color}: ButtonProps) => {
+const MiniButton = ({text}: MiniButtonProps) => {
     return (
         <View style = {styles.root}>
-            <View style = {[styles.main, {backgroundColor: color? color: "#720d5d"}]}>
+            <View style = {styles.main}>
                 <Text style = {styles.text}>{text}</Text>
             </View>
         </View>
@@ -29,19 +29,19 @@ const styles = StyleSheet.create((
         },
 
         main: {
-            borderRadius: Math.min(width/5, height/7)/2,
-            height: Math.min(width/5, height/7),
-            width: Math.min(width/5, height/7),
+            borderRadius: Math.min(width/6, height/8)/2,
+            height: Math.min(width/6, height/8),
+            width: Math.min(width/6, height/8),
             justifyContent: "center",
             alignItems: "center",
         },
 
         text: {
-            color: "white",
             fontFamily: 'Roboto-Light',
-            fontSize: Math.min(width/10, height/14),
+            fontSize: Math.min(width/12, height/16),
+            color: "white",
         }
     }
 ))
 
-export default Button;
+export default MiniButton;
