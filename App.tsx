@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
+import Button from "./components/Button";
 
 const { height } = Dimensions.get('window')
 const { width } = Dimensions.get('window')
@@ -9,11 +10,11 @@ const App = () => {
     <View style = {styles.root}>
       <View style = {styles.main}>
         <View style = {styles.display}>
-        
+
         </View>
         <View style = {styles.buttonGroup}>
           <View style = {styles.top}>
-
+            <Button text = "AC" />
           </View>
           <View style = {styles.bottom}>
             <View style = {styles.buttonRow}>
@@ -72,7 +73,7 @@ const styles = StyleSheet.create((
     },
 
     buttonRow: {
-
+      flex: 1,
     },
 
     button: {
