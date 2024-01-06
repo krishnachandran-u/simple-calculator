@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Animated } from "react-native";
 
 const { height } = Dimensions.get("window")
 const { width } = Dimensions.get('window')
@@ -10,6 +10,7 @@ interface MiniButtonProps {
 }
 
 const MiniButton = ({text}: MiniButtonProps) => {
+
     return (
         <View style = {styles.root}>
             <View style = {styles.main}>

@@ -46,6 +46,12 @@ const App = () => {
               <Button text = "3" />
               <Button text = "+" />
             </View>
+            <View style = {styles.buttonRow}>
+              <Button text = "0" />
+              <Button text = "." />
+              <Button text = "<" />
+              <Button text = "=" color = "#e30425" />
+            </View>
           </View>
         </View>
       </View>

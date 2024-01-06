@@ -50,9 +50,9 @@ const styles = StyleSheet.create(
         },
 
         main: {
-            borderRadius: Math.min(width / 5, height / 7) / 2,
-            height: Math.min(width / 5, height / 7),
-            width: Math.min(width / 5, height / 7),
+            borderRadius: Math.min(width / 7, height / 9) / 2,
+            height: Math.min(width / 6, height / 8),
+            width: Math.min(width / 6, height / 8),
             justifyContent: "center",
             alignItems: "center",
         },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create(
         text: {
             color: "white",
             fontFamily: 'Roboto-Light',
-            fontSize: Math.min(width / 10, height / 14),
+            fontSize: Math.min(width / 14, height / 17),
         }
     }
 );
