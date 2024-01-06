@@ -1,25 +1,46 @@
-import React from "react";  
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Animated } from "react-native";
 
-const { height } = Dimensions.get("window")
-const { width } = Dimensions.get("window")
+const { height, width } = Dimensions.get("window");
 
 interface ButtonProps {
     text: string;
     color?: string;
 }
 
-const Button = ({text, color}: ButtonProps) => {
-    return (
-        <View style = {styles.root}>
-            <View style = {[styles.main, {backgroundColor: color? color: "#720d5d"}]}>
-                <Text style = {styles.text}>{text}</Text>
-            </View>
-        </View>
-    )
-}
+const Button = ({ text, color }: ButtonProps) => {
+    const [scaleAnimation] = useState(new Animated.Value(1));
 
-const styles = StyleSheet.create((
+    const handlePressIn = () => {
+        Animated.spring(scaleAnimation, {
+            toValue: 0.8,
+            useNativeDriver: true,
+        }).start();
+    };
+
+    const handlePressOut = () => {
+        Animated.spring(scaleAnimation, {
+            toValue: 1,
+            useNativeDriver: true,
+        }).start();
+    };
+
+    return (
+        <View style={styles.root}>
+            <TouchableOpacity
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+                activeOpacity={0.8}
+            >
+                <Animated.View style={[styles.main, { backgroundColor: color ? color : "#720d5d", transform: [{ scale: scaleAnimation }] }]}>
+                    <Text style={styles.text}>{text}</Text>
+                </Animated.View>
+            </TouchableOpacity>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create(
     {
         root: {
             flex: 1,
@@ -29,9 +50,9 @@ const styles = StyleSheet.create((
         },
 
         main: {
-            borderRadius: Math.min(width/5, height/7)/2,
-            height: Math.min(width/5, height/7),
-            width: Math.min(width/5, height/7),
+            borderRadius: Math.min(width / 5, height / 7) / 2,
+            height: Math.min(width / 5, height / 7),
+            width: Math.min(width / 5, height / 7),
             justifyContent: "center",
             alignItems: "center",
         },
@@ -39,9 +60,9 @@ const styles = StyleSheet.create((
         text: {
             color: "white",
             fontFamily: 'Roboto-Light',
-            fontSize: Math.min(width/10, height/14),
+            fontSize: Math.min(width / 10, height / 14),
         }
     }
-))
+);
 
 export default Button;
