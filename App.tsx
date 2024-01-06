@@ -89,8 +89,10 @@ const styles = StyleSheet.create((
       alignContent: "center",
     },
 
-    signButton: {
-
+    downArrow: {
+      fontFamily: 'Roboto-Light',
+      fontSize: Math.min(width/15, height/20),
+      color: "white",
     },
 
     bottom: {
