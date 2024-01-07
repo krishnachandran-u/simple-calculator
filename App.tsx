@@ -9,7 +9,54 @@ const { height } = Dimensions.get('window')
 const { width } = Dimensions.get('window')
 
 const App = () => {
- 
+  const [firstNumber, setFirstNumber] = useState("");
+  const [secondNumber, setSecondNumber] = useState("");
+  const [operation, setOperation] = useState("");
+  const [result, setResult] = useState<Number | null>(null);
+
+  const handleNumberPress = (buttonValue: string) => {
+    if(firstNumber.length < 10) {
+      setFirstNumber(firstNumber + buttonValue);
+    }
+  }
+
+  const handleOperationPress = (buttonValue: string) => {
+    setOperation(buttonValue);
+    setSecondNumber(firstNumber); 
+    setFirstNumber("");
+  }
+
+  const AllClear = () => {
+    setFirstNumber("");
+    setSecondNumber("");
+    setOperation("");
+    setResult(null);
+  }
+
+  const Clear = () => {
+    setFirstNumber("");
+  }
+
+  const getResult = () => {
+    switch(operation) {
+      case "+":
+        AllClear();
+        setResult(parseFloat(firstNumber) + parseFloat(secondNumber));
+      case "-":
+        AllClear();
+        setResult(parseFloat(firstNumber) - parseFloat(secondNumber));
+      case "x":
+        AllClear();
+        setResult(parseFloat(firstNumber) * parseFloat(secondNumber));
+      case "/":
+        AllClear();
+        setResult(parseFloat(firstNumber) / parseFloat(secondNumber));
+      default:
+        AllClear();
+        setResult(0);
+        break;
+    }
+  }
 
   return (
     <View style = {styles.root}>
