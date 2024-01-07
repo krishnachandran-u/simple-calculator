@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import Button from "./components/Button";
@@ -8,6 +9,8 @@ const { height } = Dimensions.get('window')
 const { width } = Dimensions.get('window')
 
 const App = () => {
+ 
+
   return (
     <View style = {styles.root}>
       <View style = {styles.main}>
@@ -15,16 +18,10 @@ const App = () => {
 
         </View>
         <View style = {styles.buttonGroup}>
-          <View style = {styles.top}>
-            <MiniButton text = "√" />
-            <MiniButton text = "π" />
-            <MiniButton text= "^" />
-            <MiniButton text = "!" />
-          </View>
           <View style = {styles.bottom}>
             <View style = {styles.buttonRow}>
-              <Button text = "AC" color = "#e30425" />
-              <Button text = "( )" />
+              <Button text = "AC" color = "#ffdade" />
+              <Button text = "C" color = "#ffdade" />
               <Button text = "%" />
               <Button text = "÷" />
             </View>
@@ -50,7 +47,7 @@ const App = () => {
               <Button text = "0" />
               <Button text = "." />
               <Button text = "⌫" />
-              <Button text = "=" color = "#e30425" />
+              <Button text = "=" color = "#ffdade" />
             </View>
           </View>
         </View>
@@ -66,7 +63,7 @@ const styles = StyleSheet.create((
       width: width,
       flex: 1,
       justifyContent: "space-between",
-      backgroundColor: "#4e0d3a"
+      backgroundColor: "#ffffff"
     },
 
     main: {
@@ -78,7 +75,7 @@ const styles = StyleSheet.create((
 
     display: {
       flex: 1,
-      backgroundColor: "#5d1049",
+      backgroundColor: "#a098a4",
       borderBottomRightRadius: Math.min(width/5, height/7)/2,
       borderBottomLeftRadius: Math.min(width/5, height/7)/2,
     },
@@ -102,9 +99,10 @@ const styles = StyleSheet.create((
     },
 
     bottom: {
+      paddingTop: height/20,
       flex: 5,
       flexDirection: "column",
-      justifyContent: "space-between",
+      justifyContent: "center",
       alignContent: "space-between",
     },
 

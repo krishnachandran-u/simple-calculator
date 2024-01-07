@@ -32,7 +32,7 @@ const Button = ({ text, color }: ButtonProps) => {
                 onPressOut={handlePressOut}
                 activeOpacity={0.8}
             >
-                <Animated.View style={[styles.main, { backgroundColor: color ? color : "#720d5d", transform: [{ scale: scaleAnimation }] }]}>
+                <Animated.View style={[styles.main, { backgroundColor: color ? color : "#f5eff4", transform: [{ scale: scaleAnimation }] }]}>
                     <Text style={styles.text}>{text}</Text>
                 </Animated.View>
             </TouchableOpacity>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create(
         },
 
         text: {
-            color: "white",
+            color: "#000000",
             fontFamily: 'Roboto-Light',
             fontSize: Math.min(width / 14, height / 17),
         }
