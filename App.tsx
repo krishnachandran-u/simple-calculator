@@ -40,19 +40,18 @@ const App = () => {
   const getResult = () => {
     switch(operation) {
       case "+":
-        AllClear();
-        setResult(parseFloat(firstNumber) + parseFloat(secondNumber));
+        setResult(parseInt(firstNumber) + parseInt(secondNumber));
+        break;
       case "-":
-        AllClear();
-        setResult(parseFloat(firstNumber) - parseFloat(secondNumber));
-      case "x":
-        AllClear();
-        setResult(parseFloat(firstNumber) * parseFloat(secondNumber));
+        setResult(parseInt(secondNumber) - parseInt(firstNumber));
+        break;
+      case "*":
+        setResult(parseInt(firstNumber) * parseInt(secondNumber));
+        break;
       case "/":
-        AllClear();
-        setResult(parseFloat(firstNumber) / parseFloat(secondNumber));
+        setResult(parseFloat((parseInt(firstNumber) / parseInt(secondNumber)).toFixed(6)));
+        break;
       default:
-        AllClear();
         setResult(0);
         break;
     }
@@ -71,7 +70,7 @@ const App = () => {
     else if((firstNumber !== "")) {
       return (
         <Text style = {styles.firstNumber}>
-          {firstNumber}
+          {firstNumber.toString()}
         </Text>
       )
     }
@@ -90,11 +89,10 @@ const App = () => {
       <View style = {styles.main}>
         <View style = {styles.display}>
           <View style = {styles.topDisplay}>
-            <Text>{secondNumber}</Text>
-            <Text>{operation}</Text>
+            <Text style = {styles.secondNumber}>{secondNumber}</Text>
+            <Text style = {styles.operation}>{operation}</Text>
           </View>
           <View style = {styles.bottomDisplay}>
-            <Text>{firstNumber}</Text>
             {displayFirstNumber()}
           </View>
         </View>
@@ -104,13 +102,13 @@ const App = () => {
               <Button text = "AC" color = "#ffdade" onPress = {() => AllClear()}/>
               <Button text = "C" color = "#ffdade" onPress = {() => Clear()}/>
               <Button text = "%" />
-              <Button text = "÷" />
+              <Button text = "÷" onPress = {() => handleOperationPress("/")}/>
             </View>
             <View style = {styles.buttonRow}>
               <Button text = "7" onPress = {() => handleNumberPress("7")}/> 
               <Button text = "8" onPress = {() => handleNumberPress("8")}/>
               <Button text = "9" onPress = {() => handleNumberPress("9")}/>
-              <Button text = "×" onPress = {() => handleOperationPress("*")}/>
+              <Button text = "*" onPress = {() => handleOperationPress("*")}/>
             </View>
             <View style = {styles.buttonRow}>
               <Button text = "4" onPress = {() => handleNumberPress("4")}/>
@@ -156,31 +154,52 @@ const styles = StyleSheet.create((
 
     display: {
       flex: 1,
+      flexDirection: "column",
       backgroundColor: "#a098a4",
       borderBottomRightRadius: Math.min(width/5, height/7)/2,
       borderBottomLeftRadius: Math.min(width/5, height/7)/2,
+      justifyContent: "space-around",
+      alignContent: "space-around",
     },
 
     topDisplay: {
       flex: 1,
       color: "black",
       flexDirection: "row",
-      justifyContent: "space-between",
+      justifyContent: "flex-end",
       alignContent: "flex-end",
+      padding: width/20,
     },
 
-    bottomDisplay: {},
-
-    result: {
-      flex: 1,
+    secondNumber: {
       fontFamily: 'Roboto-Light',
       fontSize: Math.min(width / 14, height / 17),
     },
 
-    firstNumber: {
-      flex: 1,
-      fontFamily: "Roboto-Light",
+    operation: {
+      fontFamily: 'Roboto-Light',
       fontSize: Math.min(width / 14, height / 17),
+    },
+
+    result: {
+      fontFamily: 'Roboto-Light',
+      fontSize: Math.min(width / 10, height / 13),
+      marginRight: width/20,
+    },
+
+    bottomDisplay: {
+      flex: 1,
+      color: "black",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignContent: "flex-end",
+    },
+
+    firstNumber: {
+      color: "black",
+      fontFamily: "Roboto-Light",
+      fontSize: Math.min(width / 12, height / 15),
+      marginRight: width/20,
     },
 
     buttonGroup: {
