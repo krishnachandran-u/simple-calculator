@@ -3,7 +3,6 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import Button from "./components/Button";
-import MiniButton from "./components/MiniButton";
 
 const { height } = Dimensions.get('window')
 const { width } = Dimensions.get('window')
