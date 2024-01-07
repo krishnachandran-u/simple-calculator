@@ -108,27 +108,27 @@ const App = () => {
             </View>
             <View style = {styles.buttonRow}>
               <Button text = "7" onPress = {() => handleNumberPress("7")}/> 
-              <Button text = "8" />
-              <Button text = "9" />
-              <Button text = "x" />
+              <Button text = "8" onPress = {() => handleNumberPress("8")}/>
+              <Button text = "9" onPress = {() => handleNumberPress("9")}/>
+              <Button text = "×" onPress = {() => handleOperationPress("*")}/>
             </View>
             <View style = {styles.buttonRow}>
-              <Button text = "4" />
-              <Button text = "5" />
-              <Button text = "6" />
-              <Button text = "-" />
+              <Button text = "4" onPress = {() => handleNumberPress("4")}/>
+              <Button text = "5" onPress = {() => handleNumberPress("5")}/>
+              <Button text = "6" onPress = {() => handleNumberPress("6")}/>
+              <Button text = "-" onPress = {() => handleOperationPress("-")}/>
             </View>
             <View style = {styles.buttonRow}>
-              <Button text = "1" />
-              <Button text = "2" />
-              <Button text = "3" />
-              <Button text = "+" />
+              <Button text = "1" onPress = {() => handleNumberPress("1")}/>
+              <Button text = "2" onPress = {() => handleNumberPress("2")}/>
+              <Button text = "3" onPress = {() => handleNumberPress("3")}/>
+              <Button text = "+" onPress = {() => handleOperationPress("+")}/>
             </View>
             <View style = {styles.buttonRow}>
-              <Button text = "0" />
-              <Button text = "." />
-              <Button text = "⌫" />
-              <Button text = "=" color = "#ffdade" />
+              <Button text = "0" onPress = {() => handleNumberPress("0")}/>
+              <Button text = "." onPress = {() => handleNumberPress(".")}/>
+              <Button text = "⌫" onPress = {() => setFirstNumber(firstNumber.slice(0, -1))}/>
+              <Button text = "=" color = "#ffdade" onPress = {() => getResult()}/>
             </View>
           </View>
         </View>
