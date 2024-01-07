@@ -6,9 +6,10 @@ const { height, width } = Dimensions.get("window");
 interface ButtonProps {
     text: string;
     color?: string;
+    onPress?: () => void;
 }
 
-const Button = ({ text, color }: ButtonProps) => {
+const Button = ({ text, color, onPress }: ButtonProps) => {
     const [scaleAnimation] = useState(new Animated.Value(1));
 
     const handlePressIn = () => {
@@ -31,6 +32,7 @@ const Button = ({ text, color }: ButtonProps) => {
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
                 activeOpacity={0.8}
+                onPress={onPress}
             >
                 <Animated.View style={[styles.main, { backgroundColor: color ? color : "#f5eff4", transform: [{ scale: scaleAnimation }] }]}>
                     <Text style={styles.text}>{text}</Text>

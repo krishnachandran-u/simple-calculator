@@ -58,11 +58,37 @@ const App = () => {
     }
   }
 
+  const displayFirstNumber = () => {
+    if(result !== null) { //if result is not null, display result
+      return (
+        <Text style = {styles.result}>
+          {result.toString()}
+        </Text>
+      )  
+    }
+    else if(firstNumber && firstNumber.length < 5) { //if firstNumber is not null, display firstNumber
+      <Text style = {styles.firstNumber}>
+        {firstNumber.toString()}
+      </Text>
+    }
+    else ( //else there is no firstNumber, hence display 0
+      <Text style = {styles.firstNumber}>
+        {"0"}
+      </Text>
+    )
+  }
+
   return (
     <View style = {styles.root}>
       <View style = {styles.main}>
         <View style = {styles.display}>
-
+          <View style = {styles.topDisplay}>
+            <Text>{secondNumber}</Text>
+            <Text>{operation}</Text>
+          </View>
+          <View style = {styles.bottomDisplay}>
+            {firstNumber}
+          </View>
         </View>
         <View style = {styles.buttonGroup}>
           <View style = {styles.bottom}>
@@ -125,6 +151,27 @@ const styles = StyleSheet.create((
       backgroundColor: "#a098a4",
       borderBottomRightRadius: Math.min(width/5, height/7)/2,
       borderBottomLeftRadius: Math.min(width/5, height/7)/2,
+    },
+
+    topDisplay: {
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignContent: "flex-end"
+    },
+
+    bottomDisplay: {},
+
+    result: {
+      flex: 1,
+      fontFamily: 'Roboto-Light',
+      fontSize: Math.min(width / 14, height / 17),
+    },
+
+    firstNumber: {
+      flex: 1,
+      fontFamily: "Roboto-Light",
+      fontSize: Math.min(width / 14, height / 17),
     },
 
     buttonGroup: {
