@@ -59,23 +59,30 @@ const App = () => {
   }
 
   const displayFirstNumber = () => {
-    if(result !== null) { //if result is not null, display result
+    //if result is not null, display result
+    if(result !== null) { 
       return (
         <Text style = {styles.result}>
           {result.toString()}
         </Text>
       )  
     }
-    else if(firstNumber && firstNumber.length < 5) { //if firstNumber is not null, display firstNumber
-      <Text style = {styles.firstNumber}>
-        {firstNumber.toString()}
-      </Text>
+    //if firstNumber is not null, display firstNumber
+    else if((firstNumber !== "")) {
+      return (
+        <Text style = {styles.firstNumber}>
+          {firstNumber}
+        </Text>
+      )
     }
-    else ( //else there is no firstNumber, hence display 0
-      <Text style = {styles.firstNumber}>
-        {"0"}
-      </Text>
-    )
+    //else there is no firstNumber, hence display 0
+    else { 
+      return (
+        <Text style = {styles.firstNumber}>
+          {"0"}
+        </Text>
+      )
+    }
   }
 
   return (
@@ -87,19 +94,20 @@ const App = () => {
             <Text>{operation}</Text>
           </View>
           <View style = {styles.bottomDisplay}>
-            {firstNumber}
+            <Text>{firstNumber}</Text>
+            {displayFirstNumber()}
           </View>
         </View>
         <View style = {styles.buttonGroup}>
           <View style = {styles.bottom}>
             <View style = {styles.buttonRow}>
-              <Button text = "AC" color = "#ffdade" />
-              <Button text = "C" color = "#ffdade" />
+              <Button text = "AC" color = "#ffdade" onPress = {() => AllClear()}/>
+              <Button text = "C" color = "#ffdade" onPress = {() => Clear()}/>
               <Button text = "%" />
               <Button text = "÷" />
             </View>
             <View style = {styles.buttonRow}>
-              <Button text = "7" /> 
+              <Button text = "7" onPress = {() => handleNumberPress("7")}/> 
               <Button text = "8" />
               <Button text = "9" />
               <Button text = "x" />
@@ -155,9 +163,10 @@ const styles = StyleSheet.create((
 
     topDisplay: {
       flex: 1,
+      color: "black",
       flexDirection: "row",
       justifyContent: "space-between",
-      alignContent: "flex-end"
+      alignContent: "flex-end",
     },
 
     bottomDisplay: {},
