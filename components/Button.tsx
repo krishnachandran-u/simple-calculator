@@ -10,20 +10,55 @@ interface ButtonProps {
 }
 
 const Button = ({ text, color, onPress }: ButtonProps) => {
-    const [scaleAnimation] = useState(new Animated.Value(1));
+    const [pressAnimation] = useState(new Animated.Value(0));
 
     const handlePressIn = () => {
-        Animated.spring(scaleAnimation, {
-            toValue: 0.8,
-            useNativeDriver: true,
-        }).start();
+        Animated.parallel([
+            Animated.timing(pressAnimation, {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+            Animated.spring(pressAnimation, {
+                toValue: 1.2,
+                friction: 3,
+                tension: 40,
+                useNativeDriver: true,
+            }),
+        ]).start();
     };
 
     const handlePressOut = () => {
-        Animated.spring(scaleAnimation, {
-            toValue: 1,
-            useNativeDriver: true,
-        }).start();
+        Animated.parallel([
+            Animated.timing(pressAnimation, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+            Animated.spring(pressAnimation, {
+                toValue: 1,
+                friction: 3,
+                tension: 40,
+                useNativeDriver: true,
+            }),
+        ]).start();
+    };
+
+    const animatedStyle = {
+        transform: [
+            {
+                scale: pressAnimation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 1.2],
+                }),
+            },
+            {
+                rotate: pressAnimation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0deg', '360deg'],
+                }),
+            },
+        ],
     };
 
     return (
@@ -34,7 +69,7 @@ const Button = ({ text, color, onPress }: ButtonProps) => {
                 activeOpacity={0.8}
                 onPress={onPress}
             >
-                <Animated.View style={[styles.main, { backgroundColor: color ? color : "#f5eff4", transform: [{ scale: scaleAnimation }] }]}>
+                <Animated.View style={[styles.main, { backgroundColor: color ? color : "#f5eff4" }, animatedStyle]}>
                     <Text style={styles.text}>{text}</Text>
                 </Animated.View>
             </TouchableOpacity>
@@ -42,29 +77,27 @@ const Button = ({ text, color, onPress }: ButtonProps) => {
     );
 };
 
-const styles = StyleSheet.create(
-    {
-        root: {
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "center",
-            alignContent: "center",
-        },
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignContent: "center",
+    },
 
-        main: {
-            borderRadius: Math.min(width / 7, height / 9) / 2,
-            height: Math.min(width / 6, height / 8),
-            width: Math.min(width / 6, height / 8),
-            justifyContent: "center",
-            alignItems: "center",
-        },
+    main: {
+        borderRadius: Math.min(width / 7, height / 9) / 2,
+        height: Math.min(width / 6, height / 8),
+        width: Math.min(width / 6, height / 8),
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
-        text: {
-            color: "#000000",
-            fontFamily: 'Roboto-Light',
-            fontSize: Math.min(width / 14, height / 17),
-        }
+    text: {
+        color: "#000000",
+        fontFamily: 'Roboto-Light',
+        fontSize: Math.min(width / 14, height / 17),
     }
-);
+});
 
 export default Button;

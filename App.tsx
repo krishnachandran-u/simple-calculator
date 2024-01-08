@@ -48,7 +48,7 @@ const App = () => {
         setResult(parseInt(firstNumber) * parseInt(secondNumber));
         break;
       case "/":
-        setResult(parseFloat((parseInt(firstNumber) / parseInt(secondNumber)).toFixed(6)));
+        setResult(parseFloat((parseInt(secondNumber) / parseInt(firstNumber)).toFixed(6)));
         break;
       default:
         setResult(0);
@@ -182,7 +182,7 @@ const styles = StyleSheet.create((
 
     result: {
       fontFamily: 'Roboto-Light',
-      fontSize: Math.min(width / 10, height / 13),
+      fontSize: Math.min(width / 8, height / 9),
       marginRight: width/20,
     },
 
